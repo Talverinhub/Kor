@@ -1,0 +1,16 @@
+name: Idea / Öneri
+description: Suggest a feature or improvement / Özellik veya iyileştirme öner
+title: "Idea: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: What do you need? / Neye ihtiyacın var?
+      description: What should get easier? / Hangi iş kolaylaşmalı?
+    validations:
+      required: true
+  - type: textarea
+    id: how
+    attributes:
+      label: How should it work? / Nasıl çalışmalı?

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <title>TalverinConnect</title>
+  <style>
+    body { width: 280px; margin: 0; padding: 16px; background: #000; color: #f4f1ea; font: 14px "Segoe UI", sans-serif; }
+    h1 { margin: 0 0 4px; font-size: 16px; font-weight: 500; }
+    #status { margin: 0 0 14px; color: #d8c49a; line-height: 1.4; }
+    #problem { margin: 0 0 14px; color: #e89a7c; line-height: 1.4; }
+    #now { margin: 0 0 14px; padding-bottom: 14px; border-bottom: 1px solid #2b2a27; }
+    #title { font-size: 15px; }
+    #artist { margin-top: 2px; color: #a8a399; }
+    label { display: flex; align-items: center; justify-content: space-between; padding: 6px 0; cursor: pointer; }
+    input { width: 16px; height: 16px; accent-color: #d8c49a; }
+    button { width: 100%; margin-top: 12px; padding: 9px; border: 0; border-radius: 18px; background: #d8c49a; color: #000; font-size: 14px; cursor: pointer; }
+    button:focus-visible, input:focus-visible { outline: 2px solid #f4f1ea; outline-offset: 2px; }
+    [hidden] { display: none; }
+  </style>
+</head>
+<body>
+  <h1>TalverinConnect</h1>
+  <p id="status"></p>
+  <p id="problem" hidden></p>
+  <div id="now" hidden>
+    <div id="title"></div>
+    <div id="artist"></div>
+  </div>
+  <label>YouTube Music <input type="checkbox" data-source="youtube-music"></label>
+  <button id="open"></button>
+  <script src="popup.js"></script>
+</body>
+</html>

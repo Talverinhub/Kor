@@ -1,0 +1,22 @@
+# Derleme ve deneme çıktıları
+Kor.exe
+Kor.exe.*
+Sayac.exe
+Sayac.exe.*
+src/sayac.ico
+deneme/
+
+# Yayına girmeyen yerel dosyalar
+yerel/
+store/
+arsiv/
+CHROMEWEBSTORE.md
+surum-notu.txt
+.claude/
+
+# Gizli veya kişisel dosyalar
+imzadosyası/
+spotify-kimlik.txt
+*.pem
+*.key
+ozel-anahtar*.xml
