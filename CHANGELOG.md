@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.3.1
+
+- Clearer wording in the Turkish interface
+- Removed an old announcement and unused code
+
 ## 1.0.3.0
 
 - English interface. Kor follows your Windows language, and you can change it in Settings
@@ -21,6 +26,11 @@
 - Timer protection, safer updates and new hotkeys
 
 ## Türkçe
+
+### 1.0.3.1
+
+- Türkçe arayüzde daha net ifadeler
+- Eski duyuru ve kullanılmayan kod kaldırıldı
 
 ### 1.0.3.0
 

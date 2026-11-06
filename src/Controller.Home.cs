@@ -72,7 +72,6 @@ namespace Sayac
         int setupMode;
         bool intentOpen;
         bool CanRun { get { return mode != Mode.Setup || setupMode != 0 || Seconds > 0; } }
-        static readonly string News = L.T("Yeni: Kor, Kronometre ve Şarkı modları ana ekranda. Müzik bağlantısı Ayarlar > Müzik'te.");
 
         void ShowSetupDigits()
         {

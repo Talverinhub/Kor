@@ -20,7 +20,6 @@ namespace Sayac
         const int MaxFrame = 65536, MaxClients = 8, WriteTimeoutMs = 1000;
         public static readonly string[] Files = { "manifest.json", "background.js", "core/connect.js", "connectors/youtube-music.js", "popup.html", "popup.js", "icons/icon-16.png", "icons/icon-32.png", "icons/icon-48.png", "icons/icon-128.png" };
         // Mağaza yayınından sonra eklentinin resmi kimliği buraya yazılır; resmi eklenti onay istemez.
-        public static readonly string[] OfficialOrigins = { };
 
         class Client
         {
@@ -43,7 +42,6 @@ namespace Sayac
         public Action<string> ProblemFound;
         public Action ShowRequested;
         public Action StateArrived;
-        public static bool IsOfficial(string origin) { return OfficialOrigins.Contains(origin); }
 
         // Eklenti eski sürümdeyse kullanıcıya güncelleme önerilir.
         public static bool NeedsUpdate(int protocol, string version, string bundled)
@@ -65,7 +63,7 @@ namespace Sayac
 
         public static string SourceName(string source)
         {
-            return source == "youtube-music" ? "YouTube Music" : source == "spotify-web" ? "Spotify Web" : source;
+            return source == "youtube-music" ? "YouTube Music" : source;
         }
 
         public bool Connected { get { lock (clients) return clients.Any(c => c.Approved); } }
@@ -353,7 +351,7 @@ namespace Sayac
                 client.Outdated = NeedsUpdate(protocol, message.ContainsKey("version") ? message["version"] as string : null, BundledVersion());
                 // Dil gizli değildir; eklenti onay beklerken de doğru dilde görünür.
                 Write(client, "{\"t\":\"lang\",\"lang\":\"" + L.Code + "\"}");
-                if (IsOfficial(client.Origin) || trusted(client.Origin)) Welcome(client);
+                if (trusted(client.Origin)) Welcome(client);
                 else if (ApprovalNeeded != null) ApprovalNeeded(client.Origin);
                 return;
             }

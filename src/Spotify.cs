@@ -519,7 +519,7 @@ namespace Sayac
         // Odak listesini gizli bir Spotify listesi olarak kaydeder, sonucu mesaj olarak döner.
         public async Task<string> SaveList(string name, List<string> uris)
         {
-            if (uris.Count == 0) return L.T("Kaydedilecek şarkı yok. Kor çalışırken müzik dinleyince liste oluşur.");
+            if (uris.Count == 0) return L.T("Kaydedilecek şarkı yok. Sayaç çalışırken müzik dinleyince liste oluşur.");
             if (!api.Connected) return L.T("Önce Spotify'a bağlan.");
             if (!api.HasExtras) await Connect();
             if (!api.HasExtras) return L.T("Liste için Spotify izni verilmedi.");

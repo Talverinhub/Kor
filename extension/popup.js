@@ -24,7 +24,7 @@ const texts = {
   },
 };
 let text = texts.en;
-const names = { 'youtube-music': 'YouTube Music', 'spotify-web': 'Spotify Web' };
+const names = { 'youtube-music': 'YouTube Music' };
 
 async function load() {
   const keys = boxes.flatMap((box) => [`off-${box.dataset.source}`, `problem-${box.dataset.source}`]);

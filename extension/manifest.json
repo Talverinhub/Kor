@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "TalverinConnect",
-  "version": "2.2.3",
+  "version": "2.2.4",
   "description": "Shows the music playing on YouTube Music in the Kor desktop app and lets you control it from there.",
   "minimum_chrome_version": "116",
   "permissions": [

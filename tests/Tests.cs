@@ -148,19 +148,18 @@ namespace Sayac
             bridge.SetProblem("youtube-music", "");
             Equal("düzelen sorun düşer", bridge.Problems.Length, 0);
             var owner = new object();
-            bridge.SetProblem("spotify-web", "yok", owner, 5);
+            bridge.SetProblem("diger-kaynak", "yok", owner, 5);
             bridge.ClearProblems(owner, 9);
             Equal("başka sekme sorunu silmez", bridge.Problems.Length, 1);
             bridge.ClearProblems(owner, 5);
             Equal("sekme kapanınca sorun silinir", bridge.Problems.Length, 0);
-            bridge.SetProblem("spotify-web", "yok", owner, 5);
+            bridge.SetProblem("diger-kaynak", "yok", owner, 5);
             bridge.ClearProblems(owner);
             Equal("bağlantı kopunca sorun silinir", bridge.Problems.Length, 0);
             Check("eski protokol güncelleme ister", ConnectBridge.NeedsUpdate(0, "9.0.0", "2.1.0"));
             Check("eski sürüm güncelleme ister", ConnectBridge.NeedsUpdate(1, "2.0.0", "2.1.0"));
             Check("güncel sürüm uyarmaz", !ConnectBridge.NeedsUpdate(1, "2.1.0", "2.1.0"));
-            Equal("eklenti sürümü", ConnectBridge.BundledVersion(), "2.2.3");
-            Check("bilinmeyen eklenti resmi değil", !ConnectBridge.IsOfficial("chrome-extension://abc"));
+            Equal("eklenti sürümü", ConnectBridge.BundledVersion(), "2.2.4");
             Check("Spotify API yoksa tarayıcı", Logic.UseBrowser(false, false, false, false, false));
             Check("Spotify şarkısı yoksa tarayıcı", Logic.UseBrowser(true, false, false, false, false));
             Check("Spotify çalıyorsa Spotify", !Logic.UseBrowser(true, true, true, true, true));
@@ -196,14 +195,14 @@ namespace Sayac
             Check("geçerli Spotify kimliği", Logic.ValidClientId("0123456789abcdef0123456789abcdef"));
             Check("kısa Spotify kimliği reddedilir", !Logic.ValidClientId("abc"));
             Check("yanlış karakter reddedilir", !Logic.ValidClientId("z0000000000000000000000000000000"));
-            Equal("kaynak adı", ConnectBridge.SourceName("spotify-web"), "Spotify Web");
+            Equal("kaynak adı", ConnectBridge.SourceName("youtube-music"), "YouTube Music");
             string folder = ConnectBridge.ExtractExtension();
             Check("eklenti dosyaları çıkarılır", ConnectBridge.Files.All(f => File.Exists(Path.Combine(folder, f.Replace('/', Path.DirectorySeparatorChar)))));
             string installedManifest = Path.Combine(folder, "manifest.json");
             File.WriteAllText(installedManifest, "{\"version\":\"1.0.0\"}");
             Check("eski klasör yenilenir", ConnectBridge.RefreshExtensionFiles());
             Check("güncel klasör yenilenmez", !ConnectBridge.RefreshExtensionFiles());
-            Check("Spotify Web eklentide yok", !File.ReadAllText(Path.Combine(folder, "manifest.json")).Contains("open.spotify.com"));
+            Check("eklenti Spotify sitesine erişmez", !File.ReadAllText(Path.Combine(folder, "manifest.json")).Contains("open.spotify.com"));
             Check("eklenti adı", File.ReadAllText(Path.Combine(folder, "manifest.json")).Contains("TalverinConnect"));
         }
 

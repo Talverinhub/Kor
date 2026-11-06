@@ -48,7 +48,7 @@ namespace Sayac
         {
             Find<TextBlock>("CloseText").Text = mode == Mode.Setup
                 ? L.T("Tepsiye indirirsen kısayollar ve hazır sayaç çalışmaya devam eder.")
-                : L.T("Kor çalışıyor. Tepsiye indirirsen devam eder, tamamen kapatırsan durur.");
+                : L.T("Sayaç çalışıyor. Tepsiye indirirsen devam eder, tamamen kapatırsan durur.");
             Find<CheckBox>("CloseRemember").IsChecked = false;
             closeOverlay.Visibility = Visibility.Visible;
         }

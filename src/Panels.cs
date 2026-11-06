@@ -123,7 +123,6 @@ namespace Sayac
         public bool Sunset { get; set; }
         public bool ClickThrough { get; set; }
         public bool TrayOnClose { get; set; }
-        public bool IntroSeen { get; set; }
         public int Alarm { get; set; }
         public int AlarmVolume { get; set; }
         public bool AutoUpdate { get; set; }
@@ -143,7 +142,6 @@ namespace Sayac
         public bool BridgeOn { get; set; }
         public List<string> TrustedExtensions { get; set; }
         public int LastMode { get; set; }
-        public string SeenVersion { get; set; }
         public double WinLeft { get; set; }
         public double WinTop { get; set; }
         public double WinWidth { get; set; }
@@ -664,7 +662,7 @@ namespace Sayac
                 body.Children.Add(Label(L.T("Günlük hedef ") + settings.DailyGoal + L.T(" dk"), 13, Soft, 10));
             var month = stats.Top(stats.Month()).Take(5).ToList();
             body.Children.Add(Label(L.T("Bu ay en iyi odaklandığın şarkılar"), 14, Soft, 18));
-            if (month.Count == 0) body.Children.Add(Label(L.T("Kor çalışırken müzik dinleyince burada listelenir."), 14, Soft, 2));
+            if (month.Count == 0) body.Children.Add(Label(L.T("Sayaç çalışırken müzik dinleyince burada listelenir."), 14, Soft, 2));
             foreach (var x in month)
                 body.Children.Add(new TextBlock { Text = x.Key + "  (" + (int)Math.Ceiling(x.Value / 60) + L.T(" dk)"), FontSize = 14, Foreground = Text, Margin = new Thickness(0, 4, 0, 0), TextTrimming = TextTrimming.CharacterEllipsis });
 
@@ -834,7 +832,7 @@ namespace Sayac
             var updateBox = new CheckBox { IsChecked = settings.AutoUpdate, Style = (Style)win.FindResource("Switch"), Margin = new Thickness(0, 8, 0, 0) };
             var updateText = new StackPanel();
             updateText.Children.Add(new TextBlock { Text = L.T("Otomatik güncelleme"), FontSize = 15, Foreground = Text });
-            updateText.Children.Add(new TextBlock { Text = L.T("Her açılışta kontrol eder, varsa haber verip kurar ve yeniden başlar. Kor çalışırken beklenir."), FontSize = 13, Foreground = Soft, TextWrapping = TextWrapping.Wrap });
+            updateText.Children.Add(new TextBlock { Text = L.T("Her açılışta kontrol eder, varsa haber verip kurar ve yeniden başlar. Sayaç çalışırken beklenir."), FontSize = 13, Foreground = Soft, TextWrapping = TextWrapping.Wrap });
             updateBox.Content = updateText;
             updateBox.Click += (a, b) => { settings.AutoUpdate = updateBox.IsChecked == true; settings.Save(); };
             body.Children.Add(updateBox);
@@ -999,7 +997,7 @@ namespace Sayac
                 body.Children.Add(new Border { Height = 12 });
             }
             Toggle(L.T("Müziği durdurunca sayacı durdur"), L.T("Müzik durunca sayaç duraklar, müzik başlayınca devam eder. Spotify'dan yapılan değişiklik birkaç saniye gecikebilir."), settings.LinkMusic, v => settings.LinkMusic = v);
-            Toggle(L.T("Sayacı durdurunca müziği durdur"), L.T("Kor duraklayınca müzik durur, sayaç başlayınca veya devam edince müzik de başlar."), settings.LinkTimer, v => settings.LinkTimer = v);
+            Toggle(L.T("Sayacı durdurunca müziği durdur"), L.T("Sayaç duraklayınca müzik durur, sayaç başlayınca veya devam edince müzik de başlar."), settings.LinkTimer, v => settings.LinkTimer = v);
             Toggle(L.T("Sessiz bitiş"), L.T("Son 10 saniyede müziği kısar, çan bir kez çalar, sonra ses geri döner."), settings.QuietFinish, v => settings.QuietFinish = v);
             Toggle(L.T("Son şarkıyla bitir"), L.T("Süre dolarken şarkı çalıyorsa sayaç şarkı bitince biter."), settings.EndWithSong, v => settings.EndWithSong = v);
             Toggle(L.T("Kapak rengine uyum"), L.T("Kadran, çalan şarkının kapağından renk alır."), settings.CoverColor, v => { settings.CoverColor = v; controller.RefreshAccent(); });

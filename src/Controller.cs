@@ -243,12 +243,6 @@ namespace Sayac
                 // Fareyle tıklanan düğme odakta kalmaz, Boşluk tuşu sayacı yönetmeye devam eder.
                 win.Dispatcher.BeginInvoke(new Action(() => { if (Keyboard.FocusedElement is ButtonBase) win.Focus(); }), DispatcherPriority.Input);
             };
-            if (settings.SeenVersion != AppVersion.Current)
-            {
-                if (settings.SeenVersion != null || settings.IntroSeen) missed = News;
-                settings.SeenVersion = AppVersion.Current;
-                settings.Save();
-            }
             setupMode = Logic.Clamp(settings.LastMode, 0, 2);
             Find<Button>("NoticeClose").Click += (a, b) =>
             {

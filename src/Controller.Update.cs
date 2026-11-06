@@ -52,7 +52,7 @@ namespace Sayac
                 }
                 bool now = mode == Mode.Setup;
                 TryInstall();
-                return now ? L.T("Güncelleme kuruluyor. Uygulama yeniden başlayacak.") : L.T("Güncelleme hazır. Kor bitince kurulacak.");
+                return now ? L.T("Güncelleme kuruluyor. Uygulama yeniden başlayacak.") : L.T("Güncelleme hazır. Sayaç bitince kurulacak.");
             }
             catch (System.Net.Http.HttpRequestException) { return L.T("Güncelleme sunucusuna ulaşılamadı. İnternet bağlantını kontrol et."); }
             catch (System.Threading.Tasks.TaskCanceledException) { return L.T("Güncelleme sunucusuna ulaşılamadı. İnternet bağlantını kontrol et."); }
@@ -63,7 +63,7 @@ namespace Sayac
             catch (UnauthorizedAccessException) { return L.T("Güncelleme dosyası yazılamadı."); }
         }
 
-        // Kor çalışırken kurulmaz. Pencere açıksa kullanıcıya Şimdi veya Sonra diye sorulur.
+        // Sayaç çalışırken kurulmaz. Pencere açıksa kullanıcıya Şimdi veya Sonra diye sorulur.
         void TryInstall()
         {
             if (pendingUpdate == null || installing || mode != Mode.Setup) return;

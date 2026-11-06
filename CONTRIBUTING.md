@@ -15,7 +15,6 @@ Copy `src/diller/en.txt`, name it after the language code, like `de.txt`, and tr
 ## Please don't
 
 - Commit Spotify tokens, signing keys or any other secret.
-- Turn on the archived Spotify Web connector. Spotify support goes through the official API.
 
 ## Türkçe
 
@@ -23,4 +22,4 @@ Hata bildirimleri, fikirler, çeviriler ve kod katkıları memnuniyetle karşıl
 
 Kod için önce `test.ps1`, sonra `build.ps1` çalıştır. Değişikliği küçük tut, mümkünse `tests/` altına test ekle. Yeni dil için `src/diller/en.txt` dosyasını kopyala ve her satırın sağ tarafını çevir; `{0}` gibi yer tutucuları koru.
 
-Spotify anahtarlarını, imza anahtarlarını veya başka gizli bilgileri ekleme. Arşivlenmiş Spotify Web bağlayıcısını açma.
+Spotify anahtarlarını, imza anahtarlarını veya başka gizli bilgileri ekleme.
