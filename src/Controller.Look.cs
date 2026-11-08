@@ -34,6 +34,8 @@ namespace Sayac
 
         static Color Sunset(double hour)
         {
+            // Gün batımı renkleri Kor'a özel; diğer temalarda kadran temanın vurgusunu kullanır.
+            if (Theme.Name != "kor") return Ring.DefaultColor;
             double[] hours = { 0, 6, 12, 18, 22, 24 };
             Color[] colors = { Color.FromRgb(0xC9, 0xBC, 0xD6), Color.FromRgb(0xC3, 0xD3, 0xDC), Ring.DefaultColor, Color.FromRgb(0xE6, 0xB9, 0x8A), Color.FromRgb(0xC9, 0xBC, 0xD6), Color.FromRgb(0xC9, 0xBC, 0xD6) };
             int i = 0;

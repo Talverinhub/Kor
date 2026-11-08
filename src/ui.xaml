@@ -331,6 +331,11 @@
     <Button x:Name="TopPlay" AutomationProperties.Name="Başlat veya duraklat" Style="{StaticResource Chrome}" HorizontalAlignment="Left" Visibility="Collapsed" ToolTip="Başlat veya duraklat">
       <Path x:Name="TopPlayIcon" Data="M0,0 L10,6 L0,12 Z" Fill="#D8C49A"/>
     </Button>
+    <StackPanel x:Name="XStats" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="16,0,0,0" Visibility="Collapsed" IsHitTestVisible="False">
+      <TextBlock x:Name="XStreak" FontSize="13" Foreground="#FF7AE6"/>
+      <TextBlock x:Name="XCombo" FontSize="13" Foreground="#7FF2FF" Margin="12,0,0,0"/>
+      <TextBlock x:Name="XLevel" FontSize="13" Foreground="#FFE14D" Margin="12,0,0,0"/>
+    </StackPanel>
     <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
       <Button x:Name="NoteBtn" AutomationProperties.Name="Notu aç veya kapat" Style="{StaticResource Chrome}" ToolTip="Notlar">
         <Path x:Name="NoteBtnIcon" Data="M1,0.5 H8.5 L12.5,4.5 V13.5 H1 Z M8.5,0.5 V4.5 H12.5 M3.5,7.5 H10 M3.5,10.5 H7.5" Stroke="#8E8A82" StrokeThickness="1.2" StrokeLineJoin="Round"/>
@@ -349,7 +354,7 @@
       </Button>
     </StackPanel>
 
-    <Viewbox Grid.Row="1" Margin="12,0,12,8" Stretch="Uniform">
+    <Viewbox x:Name="DialBox" Grid.Row="1" Margin="12,0,12,8" Stretch="Uniform" RenderTransformOrigin="0.5,0.5">
     <Grid x:Name="Dial" Width="380" Height="380">
       <Border x:Name="RingHost" Width="372" Height="372"/>
       <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -376,6 +381,20 @@
       </StackPanel>
     </Grid>
     </Viewbox>
+    <Grid x:Name="FocusView" Grid.Row="1" Visibility="Collapsed" Margin="32,0,32,8">
+      <StackPanel VerticalAlignment="Center">
+        <TextBlock Text="Şu an" FontSize="13" Foreground="#8E8A82"/>
+        <TextBlock x:Name="FocusTask" FontSize="24" Foreground="#F4F1EA" TextWrapping="Wrap" Margin="0,4,0,0"/>
+        <Viewbox StretchDirection="DownOnly" Margin="0,22,0,14" Height="96">
+          <TextBlock x:Name="FocusTime" FontSize="84" FontWeight="Light" Foreground="#F4F1EA"/>
+        </Viewbox>
+        <UniformGrid x:Name="FocusParts" Rows="1" Columns="5" Height="10"/>
+        <TextBlock x:Name="FocusLeft" FontSize="14" Foreground="#8E8A82" HorizontalAlignment="Center" Margin="0,12,0,0"/>
+        <Border x:Name="FocusNextBox" CornerRadius="10" Background="#1E1D1B" Padding="14,10" Margin="0,20,0,0" Visibility="Collapsed">
+          <TextBlock x:Name="FocusNext" FontSize="14" Foreground="#B5B0A6" TextWrapping="Wrap"/>
+        </Border>
+      </StackPanel>
+    </Grid>
 
     <Grid x:Name="StatusRow" Grid.Row="2" MinHeight="56">
       <StackPanel VerticalAlignment="Center">
@@ -571,5 +590,8 @@
       </StackPanel>
       </Viewbox>
     </Grid>
+    <Canvas x:Name="FxLayer" Grid.RowSpan="5" Grid.ColumnSpan="2" IsHitTestVisible="False" ClipToBounds="True"/>
+    <TextBlock x:Name="FxBig" Grid.RowSpan="5" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,120"
+               FontSize="40" Foreground="#FFE14D" Opacity="0" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5"/>
   </Grid>
 </Window>

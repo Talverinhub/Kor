@@ -61,18 +61,18 @@ namespace Sayac
         static readonly string[] ColorNames = { "Kor", "Kum", "Adaçayı", "Gül", "Gece" };
         static readonly Color[] Colors =
         {
-            Color.FromRgb(0x14, 0x13, 0x11), Color.FromRgb(0x26, 0x21, 0x16), Color.FromRgb(0x17, 0x21, 0x1C),
-            Color.FromRgb(0x26, 0x1A, 0x1D), Color.FromRgb(0x15, 0x1A, 0x24)
+            Theme.Map(Color.FromRgb(0x14, 0x13, 0x11)), Theme.Map(Color.FromRgb(0x26, 0x21, 0x16)), Theme.Map(Color.FromRgb(0x17, 0x21, 0x1C)),
+            Theme.Map(Color.FromRgb(0x26, 0x1A, 0x1D)), Theme.Map(Color.FromRgb(0x15, 0x1A, 0x24))
         };
-        static readonly SolidColorBrush Gold = new SolidColorBrush(Color.FromRgb(0xD8, 0xC4, 0x9A));
-        static readonly SolidColorBrush Soft = new SolidColorBrush(Color.FromRgb(0xB5, 0xB0, 0xA6));
-        static readonly SolidColorBrush Dim = new SolidColorBrush(Color.FromRgb(0x8E, 0x8A, 0x82));
-        static readonly SolidColorBrush Bright = new SolidColorBrush(Color.FromRgb(0xF4, 0xF1, 0xEA));
-        static readonly SolidColorBrush Edge = new SolidColorBrush(Color.FromRgb(0x2B, 0x2A, 0x27));
-        static readonly SolidColorBrush ActiveTool = new SolidColorBrush(Color.FromArgb(0x2E, 0xD8, 0xC4, 0x9A));
-        static readonly SolidColorBrush Mark = new SolidColorBrush(Color.FromArgb(0x8C, 0xE6, 0xB8, 0x4A));
+        static readonly SolidColorBrush Gold = new SolidColorBrush(Theme.Map(Color.FromRgb(0xD8, 0xC4, 0x9A)));
+        static readonly SolidColorBrush Soft = new SolidColorBrush(Theme.Map(Color.FromRgb(0xB5, 0xB0, 0xA6)));
+        static readonly SolidColorBrush Dim = new SolidColorBrush(Theme.Map(Color.FromRgb(0x8E, 0x8A, 0x82)));
+        static readonly SolidColorBrush Bright = new SolidColorBrush(Theme.Map(Color.FromRgb(0xF4, 0xF1, 0xEA)));
+        static readonly SolidColorBrush Edge = new SolidColorBrush(Theme.Map(Color.FromRgb(0x2B, 0x2A, 0x27)));
+        static readonly SolidColorBrush ActiveTool = new SolidColorBrush(Theme.Map(Color.FromArgb(0x2E, 0xD8, 0xC4, 0x9A)));
+        static readonly SolidColorBrush Mark = new SolidColorBrush(Theme.Map(Color.FromArgb(0x8C, 0xE6, 0xB8, 0x4A)));
         static readonly double[] Sizes = { 13, 15, 19 };
-        static readonly SolidColorBrush Ink = new SolidColorBrush(Color.FromRgb(0xE9, 0xE4, 0xDA));
+        static readonly SolidColorBrush Ink = new SolidColorBrush(Theme.Map(Color.FromRgb(0xE9, 0xE4, 0xDA)));
         static readonly FontFamily Symbols = new FontFamily("Segoe UI Symbol");
 
         // Silinen notlar bu oturum boyunca Ctrl+Z ile sırayla geri getirilebilir.
@@ -260,6 +260,25 @@ namespace Sayac
         public void RaiseIfOnTop(Action<Window> raise)
         {
             if (note.IsVisible && note.Topmost) raise(note);
+        }
+
+        // Odak modunda gösterilecek sıradaki iş: konunun notundaki ilk işaretsiz madde.
+        public string NextStep(string topic)
+        {
+            Capture();
+            var item = data.Notes.FirstOrDefault(n => !string.IsNullOrEmpty(topic) && string.Equals((n.Name ?? "").Trim(), topic.Trim(), StringComparison.CurrentCultureIgnoreCase))
+                ?? Find(data.Active);
+            if (item == null || item.Text == null) return null;
+            foreach (string raw in item.Text.Split('\n'))
+            {
+                string line = raw.Trim();
+                if (Logic.ChecklistState(line) == 1)
+                {
+                    string rest = line.Substring(1).Trim();
+                    if (rest.Length > 0) return rest;
+                }
+            }
+            return null;
         }
 
         public void RestoreWindow() { if (data.Visible) Show(); }
@@ -603,7 +622,7 @@ namespace Sayac
                 }
                 line.Children.Add(new TextBlock { Text = Name(item), Foreground = Bright, FontSize = 13, TextTrimming = TextTrimming.CharacterEllipsis });
                 row.Child = line;
-                row.MouseEnter += (a, b) => row.Background = new SolidColorBrush(Color.FromArgb(0x14, 0xFF, 0xFF, 0xFF));
+                row.MouseEnter += (a, b) => row.Background = new SolidColorBrush(Theme.Map(Color.FromArgb(0x14, 0xFF, 0xFF, 0xFF)));
                 row.MouseLeave += (a, b) => row.Background = Brushes.Transparent;
                 row.MouseLeftButtonDown += (a, b) => { Open(target); text.Focus(); };
                 list.Children.Add(row);
@@ -656,9 +675,9 @@ namespace Sayac
                 var trash = new Border
                 {
                     Padding = new Thickness(8, 4, 8, 4), CornerRadius = new CornerRadius(6), VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 0, 4, 0),
-                    Background = asking ? new SolidColorBrush(Color.FromArgb(0x40, 0xE0, 0x6C, 0x5F)) : Brushes.Transparent, ToolTip = L.T("Sil"),
+                    Background = asking ? new SolidColorBrush(Theme.Map(Color.FromArgb(0x40, 0xE0, 0x6C, 0x5F))) : Brushes.Transparent, ToolTip = L.T("Sil"),
                     Child = asking
-                        ? (UIElement)new TextBlock { Text = L.T("Sil?"), Foreground = new SolidColorBrush(Color.FromRgb(0xF0, 0x9A, 0x8F)), FontSize = 12 }
+                        ? (UIElement)new TextBlock { Text = L.T("Sil?"), Foreground = new SolidColorBrush(Theme.Map(Color.FromRgb(0xF0, 0x9A, 0x8F))), FontSize = 12 }
                         : new Path { Data = Geometry.Parse("M0,2 H10 M3,2 V0 H7 V2 M1.5,2 L2.5,11 H7.5 L8.5,2"), Stroke = Dim, StrokeThickness = 1.1 }
                 };
                 Grid.SetColumn(trash, 1);
@@ -669,7 +688,7 @@ namespace Sayac
                     if (confirmDelete == note1.Id) { confirmDelete = null; Delete(note1); }
                     else { confirmDelete = note1.Id; RenderLibrary(); }
                 };
-                grid.MouseEnter += (a, b) => grid.Background = new SolidColorBrush(Color.FromArgb(0x14, 0xFF, 0xFF, 0xFF));
+                grid.MouseEnter += (a, b) => grid.Background = new SolidColorBrush(Theme.Map(Color.FromArgb(0x14, 0xFF, 0xFF, 0xFF)));
                 grid.MouseLeave += (a, b) => grid.Background = Brushes.Transparent;
                 grid.MouseLeftButtonDown += (a, b) => { Part<Popup>("NoteLibraryPop").IsOpen = false; Open(note1); text.Focus(); };
                 list.Children.Add(grid);
@@ -687,7 +706,7 @@ namespace Sayac
                 var dot = new Ellipse
                 {
                     Width = 22, Height = 22, Margin = new Thickness(4), Cursor = Cursors.Hand, Fill = new SolidColorBrush(Lift(Colors[i])),
-                    Stroke = selected ? Gold : new SolidColorBrush(Color.FromArgb(0x40, 0xFF, 0xFF, 0xFF)), StrokeThickness = selected ? 2 : 1, ToolTip = L.T(ColorNames[i])
+                    Stroke = selected ? Gold : new SolidColorBrush(Theme.Map(Color.FromArgb(0x40, 0xFF, 0xFF, 0xFF))), StrokeThickness = selected ? 2 : 1, ToolTip = L.T(ColorNames[i])
                 };
                 dot.MouseLeftButtonDown += (a, b) =>
                 {

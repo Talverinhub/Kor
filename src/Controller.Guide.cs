@@ -74,7 +74,7 @@ namespace Sayac
                 dots.Children.Add(new Ellipse
                 {
                     Width = i == introStep ? 8 : 6, Height = i == introStep ? 8 : 6, Margin = new Thickness(0, 0, 6, 0), VerticalAlignment = VerticalAlignment.Center,
-                    Fill = new SolidColorBrush(i == introStep ? Color.FromRgb(216, 196, 154) : Color.FromRgb(74, 72, 67))
+                    Fill = new SolidColorBrush(i == introStep ? Theme.Map(Color.FromRgb(216, 196, 154)) : Theme.Map(Color.FromRgb(74, 72, 67)))
                 });
             PlaceGuide(true);
         }

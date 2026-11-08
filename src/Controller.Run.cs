@@ -262,6 +262,7 @@ namespace Sayac
 
         void Tick()
         {
+            UpdateThemeView();
             if (mode == Mode.Ringing)
             {
                 double t = ringClock.Elapsed.TotalSeconds;
@@ -306,6 +307,7 @@ namespace Sayac
         void Finish()
         {
             mode = Mode.Ringing;
+            ExtremeFinish();
             clock.Stop();
             ringClock.Restart();
             ShowDigits(0, 0, 0);

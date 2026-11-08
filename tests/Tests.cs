@@ -215,6 +215,17 @@ namespace Sayac
             Check("arama büyük küçük harf ayırmaz", Logic.NoteMatches("RAPOR", null, "Bugün", "rapor taslağı"));
             Check("boş arama hepsini gösterir", Logic.NoteMatches(" ", "x"));
             Check("eşleşmeyen arama", !Logic.NoteMatches("kahve", "Plan", "rapor"));
+            Theme.Use("lavanta");
+            Equal("tema altını lilaya çevirir", "#C9B6F2", "#" + Theme.Map(System.Windows.Media.Color.FromRgb(0xD8, 0xC4, 0x9A)).ToString().Substring(3));
+            Check("tema şeffaflığı korur", Theme.Xaml("<a Fill=\"#8CE6B84A\"/>").Contains("#8CB48CF0"));
+            Check("bilinmeyen renk değişmez", Theme.Xaml("<a Fill=\"#26FFFFFF\"/>").Contains("#26FFFFFF"));
+            Theme.Use("yok");
+            Equal("bilinmeyen tema Kor olur", "kor", Theme.Name);
+            Equal("Kor teması renk değiştirmez", "#D8C49A", "#" + Theme.Map(System.Windows.Media.Color.FromRgb(0xD8, 0xC4, 0x9A)).ToString().Substring(3));
+            Equal("seri dün varsa artar", 5, Logic.NextStreak(4, "2026-11-07", "2026-11-08"));
+            Equal("seri aynı gün değişmez", 4, Logic.NextStreak(4, "2026-11-08", "2026-11-08"));
+            Equal("ara verilince seri baştan", 1, Logic.NextStreak(4, "2026-11-05", "2026-11-08"));
+            Equal("seviye", 4, Logic.Level(340));
             Check("geçerli Spotify kimliği", Logic.ValidClientId("0123456789abcdef0123456789abcdef"));
             Check("kısa Spotify kimliği reddedilir", !Logic.ValidClientId("abc"));
             Check("yanlış karakter reddedilir", !Logic.ValidClientId("z0000000000000000000000000000000"));

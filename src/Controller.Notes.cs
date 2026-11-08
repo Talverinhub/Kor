@@ -8,13 +8,14 @@ namespace Sayac
 {
     partial class Controller
     {
-        static readonly SolidColorBrush NoteOn = new SolidColorBrush(Color.FromRgb(0xD8, 0xC4, 0x9A));
-        static readonly SolidColorBrush NoteOff = new SolidColorBrush(Color.FromRgb(0x8E, 0x8A, 0x82));
+        static readonly SolidColorBrush NoteOn = new SolidColorBrush(Theme.Map(Color.FromRgb(0xD8, 0xC4, 0x9A)));
+        static readonly SolidColorBrush NoteOff = new SolidColorBrush(Theme.Map(Color.FromRgb(0x8E, 0x8A, 0x82)));
 
         void BindNotes()
         {
             notes = new NotePad(win, mini);
             KeepMiniOnTop();
+            InitTheme();
             Find<Button>("NoteBtn").Click += (a, b) => notes.Toggle();
             ((Button)mini.FindName("MiniNote")).Click += (a, b) => notes.Toggle();
             notes.VisibilityChanged += UpdateNoteButtons;

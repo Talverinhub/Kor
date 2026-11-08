@@ -113,6 +113,17 @@ namespace Sayac
             return fields.Any(f => f != null && culture.IndexOf(f, query, System.Globalization.CompareOptions.IgnoreCase) >= 0);
         }
 
+        // Extreme: seri günlük odakla artar, bir gün atlanırsa baştan başlar.
+        public static int NextStreak(int streak, string lastDay, string today)
+        {
+            if (lastDay == today) return Math.Max(1, streak);
+            DateTime last, now;
+            if (DateTime.TryParse(lastDay, out last) && DateTime.TryParse(today, out now) && (now - last).TotalDays == 1) return streak + 1;
+            return 1;
+        }
+
+        public static int Level(int xp) { return Math.Max(0, xp) / 100 + 1; }
+
         public static bool NoteIsEmpty(string text) { return string.IsNullOrWhiteSpace(text); }
 
         // Sekme adı notun ilk dolu satırıdır.

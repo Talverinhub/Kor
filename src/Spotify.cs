@@ -269,8 +269,8 @@ namespace Sayac
         static readonly string Offline = L.T("Spotify'a ulaşılamıyor. İnternetini kontrol et, yeniden deneniyor.");
         static readonly Geometry PlayGeo = Geometry.Parse("M0,0 L10,6 L0,12 Z");
         static readonly Geometry PauseGeo = Geometry.Parse("M0,0 H3.5 V12 H0 Z M6.5,0 H10 V12 H6.5 Z");
-        static readonly Brush Gold = new SolidColorBrush(Color.FromRgb(0xD8, 0xC4, 0x9A));
-        static readonly Brush Quiet = new SolidColorBrush(Color.FromRgb(0x8E, 0x8A, 0x82));
+        static readonly Brush Gold = new SolidColorBrush(Theme.Map(Color.FromRgb(0xD8, 0xC4, 0x9A)));
+        static readonly Brush Quiet = new SolidColorBrush(Theme.Map(Color.FromRgb(0x8E, 0x8A, 0x82)));
 
         readonly Window win, mini;
         readonly SpotifyApi api = new SpotifyApi();

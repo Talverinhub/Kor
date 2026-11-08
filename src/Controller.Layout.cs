@@ -25,6 +25,7 @@ namespace Sayac
     {
         void Apply()
         {
+            UpdateThemeView();
             bool setup = mode == Mode.Setup, active = mode == Mode.Running || mode == Mode.Paused;
             double width = win.ActualWidth > 0 ? win.ActualWidth : win.Width;
             double height = win.ActualHeight > 0 ? win.ActualHeight : win.Height;

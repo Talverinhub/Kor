@@ -88,7 +88,7 @@ namespace Sayac
             mainBtn.IsEnabled = CanRun;
             string[] tabs = { "ModeTimer", "ModeWatch", "ModeSongs" };
             for (int i = 0; i < tabs.Length; i++)
-                Find<Button>(tabs[i]).Foreground = new SolidColorBrush(i == value ? Ring.DefaultColor : Color.FromRgb(0x8E, 0x8A, 0x82));
+                Find<Button>(tabs[i]).Foreground = new SolidColorBrush(i == value ? Ring.DefaultColor : Theme.Map(Color.FromRgb(0x8E, 0x8A, 0x82)));
             Apply();
         }
 

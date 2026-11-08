@@ -27,7 +27,7 @@ namespace Sayac
         {
             using (var xaml = Assembly.GetExecutingAssembly().GetManifestResourceStream(name))
             using (var reader = new System.IO.StreamReader(xaml, System.Text.Encoding.UTF8))
-                return (T)XamlReader.Parse(L.Xaml(reader.ReadToEnd()));
+                return (T)XamlReader.Parse(L.Xaml(Theme.Xaml(reader.ReadToEnd())));
         }
 
         const long MaxLogBytes = 200000;
@@ -83,7 +83,9 @@ namespace Sayac
             AppDomain.CurrentDomain.UnhandledException += (a, b) => { var error = b.ExceptionObject as Exception; if (error != null) LogError(error); };
             System.Threading.Tasks.TaskScheduler.UnobservedTaskException += (a, b) => { LogError(b.Exception); b.SetObserved(); };
             app.ShutdownMode = ShutdownMode.OnMainWindowClose;
-            L.Use(L.Pick(Store.Load<Settings>("ayarlar.json").Language));
+            var startup = Store.Load<Settings>("ayarlar.json");
+            L.Use(L.Pick(startup.Language));
+            Theme.Use(startup.Theme);
             var win = Load<Window>("ui.xaml");
             app.MainWindow = win;
             var controller = new Controller(win);

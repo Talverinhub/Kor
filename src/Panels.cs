@@ -138,6 +138,10 @@ namespace Sayac
         public bool LessMotion { get; set; }
         public string SpotifyClientId { get; set; }
         public string Language { get; set; }
+        public string Theme { get; set; }
+        public int Xp { get; set; }
+        public int Streak { get; set; }
+        public string LastFocusDay { get; set; }
         public int MusicSource { get; set; }
         public bool BridgeOn { get; set; }
         public List<string> TrustedExtensions { get; set; }
@@ -418,7 +422,7 @@ namespace Sayac
     class FocusPanel
     {
         static readonly Brush Text = Paint(0xF4, 0xF1, 0xEA), Soft = Paint(0x8E, 0x8A, 0x82), Gold = Paint(0xD8, 0xC4, 0x9A), Line = Paint(0x2B, 0x2A, 0x27), Warn = Paint(0xE8, 0x9A, 0x7C);
-        static Brush Paint(byte r, byte g, byte b) { var x = new SolidColorBrush(Color.FromRgb(r, g, b)); x.Freeze(); return x; }
+        static Brush Paint(byte r, byte g, byte b) { var x = new SolidColorBrush(Theme.Map(Color.FromRgb(r, g, b))); x.Freeze(); return x; }
 
         readonly Window win;
         readonly Settings settings;
@@ -815,6 +819,23 @@ namespace Sayac
             }
             body.Children.Add(languageRow);
             if (L.Pick(settings.Language) != L.Code) body.Children.Add(Label(L.T("Dil, Kor yeniden açılınca değişecek."), 13, Soft, 0));
+            body.Children.Add(Label(L.T("Tema"), 17, Text, 10));
+            var themeRow = new WrapPanel { Margin = new Thickness(0, 8, 0, 14) };
+            foreach (string name in Sayac.Theme.Names)
+            {
+                string chosen = name;
+                var chip = Chip(Sayac.Theme.Label(name), () =>
+                {
+                    settings.Theme = chosen;
+                    settings.Save();
+                    if (chosen != Sayac.Theme.Name && controller.Idle) controller.Restart();
+                    else Render();
+                });
+                if (name == (settings.Theme ?? "kor")) chip.Foreground = Gold;
+                themeRow.Children.Add(chip);
+            }
+            body.Children.Add(themeRow);
+            if ((settings.Theme ?? "kor") != Sayac.Theme.Name) body.Children.Add(Label(L.T("Tema, Kor yeniden açılınca değişecek."), 13, Soft, 0));
             Toggle(L.T("Başlarken ne yaptığını sor"), L.T("Ana ekranda \"Ne yapıyorsun?\" alanı gösterir, Özet'te konulara göre süre görünür."), settings.AskIntent, v => { settings.AskIntent = v; controller.RefreshPresets(); });
             Toggle(L.T("Bitişte not sor"), L.T("Süre bitince \"Nerede kaldım?\" kutusu çıkar, not sonraki açılışta gösterilir."), settings.AskNote, v => settings.AskNote = v);
             Toggle(L.T("Bitmeden 5 dakika sor"), L.T("Son 20 saniyede süreyi 5 dakika uzatmak isteyip istemediğini sorar."), settings.AskMore, v => settings.AskMore = v);
@@ -1151,8 +1172,8 @@ namespace Sayac
             }
             var accent = (cover != null ? SpotifyPanel.Dominant(cover) : null) ?? Ring.DefaultColor;
             var gold = new SolidColorBrush(accent);
-            var white = new SolidColorBrush(Color.FromRgb(0xF4, 0xF1, 0xEA));
-            var soft = new SolidColorBrush(Color.FromRgb(0x8E, 0x8A, 0x82));
+            var white = new SolidColorBrush(Theme.Map(Color.FromRgb(0xF4, 0xF1, 0xEA)));
+            var soft = new SolidColorBrush(Theme.Map(Color.FromRgb(0x8E, 0x8A, 0x82)));
             int minutes = (int)(stats.Week().Sum(d => d.Seconds) / 60);
             var font = new FontFamily("Bahnschrift");
 

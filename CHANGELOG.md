@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.5.0
+
+- Four themes in Settings, General: Kor, Lavender, Focus (ADHD) and Extreme
+- Focus shows one task, a large time and progress in five parts while the timer runs
+- Extreme adds a neon dial, combos, points, levels, a daily streak and celebrations
+
 ## 1.0.4.0
 
 - Notes with tabs, formatting and colors. They attach to the side of Kor or the top of the mini timer
@@ -34,6 +40,12 @@
 - Timer protection, safer updates and new hotkeys
 
 ## Türkçe
+
+### 1.0.5.0
+
+- Ayarlar, Genel bölümünde dört tema: Kor, Lavanta, Odak (ADHD) ve Extreme
+- Odak, sayaç çalışırken tek iş, büyük süre ve beş parçalı ilerleme gösterir
+- Extreme neon kadran, kombo, puan, seviye, günlük seri ve kutlamalar ekler
 
 ### 1.0.4.0
 
