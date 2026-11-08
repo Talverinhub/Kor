@@ -8,7 +8,7 @@ body:
     attributes:
       label: Kor version / Kor sürümü
       description: Shown in Settings / Ayarlar'da yazar
-      placeholder: "1.0.3.1"
+      placeholder: "1.0.4.0"
     validations:
       required: true
   - type: textarea

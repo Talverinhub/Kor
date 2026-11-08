@@ -332,6 +332,9 @@
       <Path x:Name="TopPlayIcon" Data="M0,0 L10,6 L0,12 Z" Fill="#D8C49A"/>
     </Button>
     <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
+      <Button x:Name="NoteBtn" AutomationProperties.Name="Notu aç veya kapat" Style="{StaticResource Chrome}" ToolTip="Notlar">
+        <Path x:Name="NoteBtnIcon" Data="M1,0.5 H8.5 L12.5,4.5 V13.5 H1 Z M8.5,0.5 V4.5 H12.5 M3.5,7.5 H10 M3.5,10.5 H7.5" Stroke="#8E8A82" StrokeThickness="1.2" StrokeLineJoin="Round"/>
+      </Button>
       <Button x:Name="PanelBtn" AutomationProperties.Name="Rutinler, özet ve ayarlar" Style="{StaticResource Chrome}" ToolTip="Rutinler, özet ve ayarlar">
         <Path Data="M0,3 H8 M12,3 H14 M0,10 H2 M6,10 H14 M8,3 a2,2 0 1 0 4,0 a2,2 0 1 0 -4,0 M2,10 a2,2 0 1 0 4,0 a2,2 0 1 0 -4,0" Stroke="#8E8A82" StrokeThickness="1.2"/>
       </Button>

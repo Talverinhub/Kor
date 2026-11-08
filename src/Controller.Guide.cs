@@ -20,6 +20,7 @@ namespace Sayac
             new[] { "Presets", L.T("Hazır süreler"), L.T("Bir süreye tıkla"), L.T("Kadran hemen o süreye geçer. Bu düğmeleri Ayarlar'dan değiştirebilirsin.") },
             new[] { "MainBtn", L.T("Başlat"), L.T("Buraya tıkla"), L.T("Geri sayım başlar. Sayaç çalışırken +1 dk ve +5 dk ile süre ekleyebilirsin.") },
             new[] { "PanelBtn", L.T("Rutinler, özet ve ayarlar"), L.T("Bu simgeye tıkla"), L.T("Sık kullandığın süreleri kaydet, odak özetini gör, alarmı ve kısayolları değiştir.") },
+            new[] { "NoteBtn", L.T("Notlar"), L.T("Not simgesine tıkla"), L.T("Yanında sekmeli bir not defteri açılır. Kor'a yaklaştırınca yapışır, uzaklaştırınca ayrılır. Notların kendiliğinden kaydedilir. Ctrl+Shift+Alt+N her yerden açar.") },
             new[] { "PinBtn", L.T("Mini sayaç"), L.T("Raptiyeye tıkla"), L.T("Sayaç ve müzik, ekranın köşesinde her zaman üstte duran küçük bir pencereye geçer.") },
             new[] { "SpotifyRow", L.T("Müziğin"), L.T("Şarkıyı buradan yönet"), L.T("Spotify için önce Ayarlar > Müzik'e Client ID'ni gir, sonra Spotify'a bağlan'a tıkla. Spotify Premium gerekir.") },
             new[] { "CloseBtn", L.T("Kapatma"), L.T("Çarpıya tıkla"), L.T("Kor'u tepsiye indirebilir veya tamamen kapatabilirsin. Tepside kısayollar çalışmaya devam eder.") },

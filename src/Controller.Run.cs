@@ -91,6 +91,7 @@ namespace Sayac
             settings.LastNote = null;
             songExtended = false;
             intent = settings.AskIntent ? intentBox.Text.Trim() : "";
+            if (notes != null) notes.Topic(intent);
             win.Focus();
             SetMiniPanel(null);
             ShowNotice();

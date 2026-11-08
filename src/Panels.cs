@@ -26,7 +26,7 @@ namespace Sayac
     {
         public static readonly string Folder = Environment.GetEnvironmentVariable("SAYAC_VERI")
             ?? IoPath.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Sayac");
-        static readonly string[] DataFiles = { "ayarlar.json", "odak.json", "saydamlik.txt", "son-sure.txt", "mini-konum.txt" };
+        static readonly string[] DataFiles = { "ayarlar.json", "odak.json", "saydamlik.txt", "son-sure.txt", "mini-konum.txt", "notlar.json" };
         const int KeepBackups = 5;
         public static bool Frozen;
 
@@ -308,6 +308,7 @@ namespace Sayac
             new[] { "music", L.T("Müziği oynat veya duraklat") },
             new[] { "next", L.T("Sonraki şarkı") },
             new[] { "prev", L.T("Önceki şarkı") },
+            new[] { "notes", L.T("Notları aç veya kapat") },
         };
 
         [DllImport("user32.dll")] static extern bool RegisterHotKey(IntPtr h, int id, uint mods, uint vk);
@@ -330,14 +331,18 @@ namespace Sayac
             return new Dictionary<string, string> {
                 { "toggle", Pack(m, Key.S) }, { "reset", Pack(m, Key.R) }, { "add1", Pack(m, Key.Up) },
                 { "snooze", Pack(m, Key.E) }, { "pin", Pack(m, Key.M) }, { "click", Pack(m, Key.T) }, { "music", Pack(m, Key.P) },
-                { "next", Pack(m, Key.Right) }, { "prev", Pack(m, Key.Left) } };
+                { "next", Pack(m, Key.Right) }, { "prev", Pack(m, Key.Left) }, { "notes", Pack(m, Key.N) } };
         }
 
         // Eski Ctrl+Alt varsayılanları yeni varsayılanlara taşınır, kullanıcının seçtikleri korunur.
         public static void Migrate(Settings s)
         {
-            if (s.KeysVersion >= 2) return;
             var fresh = Defaults();
+            // Sonradan eklenen kısayollar eski ayarlara da eklenir.
+            bool added = false;
+            foreach (var pair in fresh) if (!s.Keys.ContainsKey(pair.Key)) { s.Keys[pair.Key] = pair.Value; added = true; }
+            if (added) s.Save();
+            if (s.KeysVersion >= 2) return;
             foreach (var pair in fresh)
             {
                 uint mods; int vk; string old;

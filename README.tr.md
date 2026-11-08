@@ -23,6 +23,7 @@ Bu yüzden masaüstüm için Kor'u yaptım. Süreyi kuruyorum, müziği açıyor
 - Son 20 saniyede gelen soru: 5 dakika daha?
 - İsteğe bağlı sessiz bitiş: müzik kısılır, çan çalar, ses geri gelir
 - Pencere değiştirmeden duraklatıp şarkı geçmeni sağlayan genel kısayollar
+- Kor'un yanına veya mini sayacın üstüne yapışan; sekmeli, yapılacaklar listeli, biçimlendirilebilen ve aranabilen notlar
 - Odak süren ve dinlediklerinle günlük özet
 - Otomatik güncelleme
 - Türkçe ve İngilizce. Kor, Windows dilini izler, Ayarlar'dan değiştirebilirsin

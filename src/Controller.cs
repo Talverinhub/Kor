@@ -68,6 +68,7 @@ namespace Sayac
         readonly string miniPlacePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Sayac", "mini-konum.txt");
         readonly FrameworkElement spotifyRow;
         readonly Window mini;
+        NotePad notes;
         readonly DigitRow miniTime;
         readonly ScaleTransform miniScale;
         readonly System.Windows.Shapes.Path miniIcon;
@@ -213,6 +214,7 @@ namespace Sayac
             win.SourceInitialized += (a, b) => hotkeys.Attach(new WindowInteropHelper(win).Handle);
             win.Closed += (a, b) => { stats.Save(); hotkeys.Clear(); audioBeat.Stop(); if (bridge != null) bridge.Stop(); };
             win.IsVisibleChanged += (a, b) => RefreshBeat();
+            BindNotes();
             win.Closing += (a, b) => { if (exiting && fading) { fading = false; spotify.SetVolumeNow(fadeFrom); settings.PendingVolume = -1; settings.Save(); } };
             Find<Button>("CloseTray").Click += (a, b) => FinishClose(true);
             Find<Button>("CloseExit").Click += (a, b) => FinishClose(false);

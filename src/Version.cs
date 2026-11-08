@@ -1,13 +1,13 @@
 using System.Reflection;
 
-[assembly: AssemblyVersion("1.0.3.1")]
-[assembly: AssemblyFileVersion("1.0.3.1")]
+[assembly: AssemblyVersion("1.0.4.0")]
+[assembly: AssemblyFileVersion("1.0.4.0")]
 [assembly: AssemblyTitle("Kor")]
 
 namespace Sayac
 {
     static class AppVersion
     {
-        public const string Current = "1.0.3.1";
+        public const string Current = "1.0.4.0";
     }
 }

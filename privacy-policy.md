@@ -15,6 +15,7 @@ The extension also keeps the connection status, language, site preference and cu
 Kor stores the following on your computer:
 
 - Settings and routines
+- Your notes
 - Focus times, topics and the names of songs you listened to
 - The state of a running timer
 - A local log of unexpected errors

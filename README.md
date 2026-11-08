@@ -23,6 +23,7 @@ So I made Kor, a timer for my desktop. Kor means ember in Turkish. I set it, put
 - A question with 20 seconds left: 5 more minutes?
 - Optional quiet finish: the music drops, a chime plays and the volume comes back
 - Global hotkeys, so you can pause or skip without switching windows
+- Notes with tabs, checklists, formatting and search. They attach to the side of Kor or to the top of the mini timer
 - A daily summary of your focus time and what you listened to
 - Automatic updates
 - Turkish and English. Kor follows your Windows language, and you can change it in Settings

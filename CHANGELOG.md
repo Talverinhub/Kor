@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.4.0
+
+- Notes with tabs, formatting and colors. They attach to the side of Kor or the top of the mini timer
+- Checklists, search, and Ctrl+Z to bring back a deleted note
+- The note for your "What are you doing?" topic comes to the front when the timer starts
+- Ctrl+Shift+Alt+N opens notes from any app
+- The mini timer stays in front of the taskbar and inside the screen
+
 ## 1.0.3.1
 
 - Clearer wording in the Turkish interface
@@ -26,6 +34,14 @@
 - Timer protection, safer updates and new hotkeys
 
 ## Türkçe
+
+### 1.0.4.0
+
+- Sekmeli, biçimlendirilebilen ve renkli notlar. Kor'un yanına veya mini sayacın üstüne yapışır
+- Yapılacaklar listesi, arama ve silinen notu Ctrl+Z ile geri getirme
+- Sayaç başlarken "Ne yapıyorsun?" konusunun notu öne gelir
+- Ctrl+Shift+Alt+N notları her uygulamadan açar
+- Mini sayaç görev çubuğunun önünde ve ekranın içinde kalır
 
 ### 1.0.3.1
 

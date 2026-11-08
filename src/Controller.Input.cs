@@ -142,6 +142,7 @@ namespace Sayac
                 case "music": spotify.TogglePlay(); break;
                 case "next": spotify.Next(); break;
                 case "prev": spotify.Previous(); break;
+                case "notes": if (notes != null) notes.Toggle(); break;
             }
         }
     }

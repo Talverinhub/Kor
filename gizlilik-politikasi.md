@@ -15,6 +15,7 @@ Eklenti ayrıca bağlantı durumunu, dili, site tercihini ve çalan şarkı bilg
 Kor bu bilgisayarda şunları saklar:
 
 - Ayarlar ve rutinler
+- Notların
 - Odak süreleri, konular ve dinlenen şarkı adları
 - Çalışan sayacın durumu
 - Beklenmeyen hataların yerel günlüğü
