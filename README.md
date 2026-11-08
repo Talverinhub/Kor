@@ -28,7 +28,7 @@ So I made Kor, a timer for my desktop. Kor means ember in Turkish. I set it, put
 - Automatic updates
 - Turkish and English. Kor follows your Windows language, and you can change it in Settings
 - Four themes: Kor, Lavender, Focus for ADHD with one task and progress in parts, and Extreme with points, combos and celebrations
-- Optional YouTube Music support through the TalverinConnect browser extension
+- Optional YouTube Music support through the [TalverinConnect](https://chromewebstore.google.com/detail/talverinconnect/japncegojpkpjddjboeecekloanlkmpb) browser extension
 
 ## How to run it
 

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.5.1
+
+- TalverinConnect is now on the Chrome Web Store. Install TalverinConnect opens the store page
+- The store version connects without an approval prompt. Manual install is still available
+
 ## 1.0.5.0
 
 - Four themes in Settings, General: Kor, Lavender, Focus (ADHD) and Extreme

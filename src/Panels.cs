@@ -952,7 +952,7 @@ namespace Sayac
             bridgeStatus.Text = connected ? L.T("Durum: Eklenti bağlı") : L.T("Durum: Eklenti bağlı değil. Müzik sekmesini aç veya yenile.");
             bridgeStatus.Foreground = connected ? Gold : Soft;
             var lines = controller.BridgeProblems.Select(x => ConnectBridge.SourceName(x) + L.T(" okunamadı. Sayfayı yenile. Düzelmezse TalverinConnect'i yeniden kur.")).ToList();
-            if (controller.BridgeOutdated) lines.Add(L.T("Eklenti eski sürümde. TalverinConnect'i kur düğmesine bas, sonra tarayıcının eklenti sayfasından yenile."));
+            if (controller.BridgeOutdated) lines.Add(L.T("Eklenti eski sürümde. Tarayıcının eklenti sayfasından güncelle veya Elle kur düğmesiyle yeniden kur."));
             bridgeWarning.Text = string.Join("\n", lines);
             bridgeWarning.Visibility = lines.Count > 0 ? Visibility.Visible : Visibility.Collapsed;
         }
@@ -1010,6 +1010,11 @@ namespace Sayac
                 var installRow = new StackPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(0, 0, 0, 0) };
                 installRow.Children.Add(Chip(L.T("TalverinConnect'i kur"), () =>
                 {
+                    try { System.Diagnostics.Process.Start(ConnectBridge.StoreUrl); } catch { }
+                    result.Text = L.T("Chrome Web Store açıldı. Chrome'a ekle'ye bas, sonra müzik sekmesini aç veya yenile.");
+                }));
+                installRow.Children.Add(Chip(L.T("Elle kur"), () =>
+                {
                     string folder = ConnectBridge.ExtractExtension();
                     Clipboard.SetText(folder);
                     string browser = ConnectBridge.OpenExtensionsPage();
@@ -1019,7 +1024,7 @@ namespace Sayac
                 }));
                 body.Children.Add(installRow);
                 body.Children.Add(result);
-                body.Children.Add(Label(L.T("1. Geliştirici modunu aç.  2. Paketlenmemiş öğe yükle'ye bas.  3. Pencerenin adres alanına Ctrl+V ile yapıştırıp klasörü seç. Müzik sekmesini açınca Kor'da çıkan onaya izin ver."), 13, Soft, 8));
+                body.Children.Add(Label(L.T("Elle kurulum: 1. Geliştirici modunu aç.  2. Paketlenmemiş öğe yükle'ye bas.  3. Pencerenin adres alanına Ctrl+V ile yapıştırıp klasörü seç. Müzik sekmesini açınca Kor'da çıkan onaya izin ver."), 13, Soft, 8));
                 body.Children.Add(new Border { Height = 12 });
             }
             Toggle(L.T("Müziği durdurunca sayacı durdur"), L.T("Müzik durunca sayaç duraklar, müzik başlayınca devam eder. Spotify'dan yapılan değişiklik birkaç saniye gecikebilir."), settings.LinkMusic, v => settings.LinkMusic = v);

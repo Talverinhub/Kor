@@ -28,7 +28,7 @@ Bu yüzden masaüstüm için Kor'u yaptım. Süreyi kuruyorum, müziği açıyor
 - Otomatik güncelleme
 - Türkçe ve İngilizce. Kor, Windows dilini izler, Ayarlar'dan değiştirebilirsin
 - Dört tema: Kor, Lavanta, tek iş ve parçalı ilerleme gösteren Odak (ADHD), puan, kombo ve kutlamalı Extreme
-- TalverinConnect tarayıcı eklentisiyle isteğe bağlı YouTube Music desteği
+- [TalverinConnect](https://chromewebstore.google.com/detail/talverinconnect/japncegojpkpjddjboeecekloanlkmpb) tarayıcı eklentisiyle isteğe bağlı YouTube Music desteği
 
 ## Nasıl çalıştırılır?
 

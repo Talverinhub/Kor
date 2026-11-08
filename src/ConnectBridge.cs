@@ -19,7 +19,9 @@ namespace Sayac
         public const int Port = 8899, Protocol = 1;
         const int MaxFrame = 65536, MaxClients = 8, WriteTimeoutMs = 1000;
         public static readonly string[] Files = { "manifest.json", "background.js", "core/connect.js", "connectors/youtube-music.js", "popup.html", "popup.js", "icons/icon-16.png", "icons/icon-32.png", "icons/icon-48.png", "icons/icon-128.png" };
-        // Mağaza yayınından sonra eklentinin resmi kimliği buraya yazılır; resmi eklenti onay istemez.
+        // Chrome Web Store'daki resmi eklenti onay istemez.
+        public const string StoreOrigin = "chrome-extension://japncegojpkpjddjboeecekloanlkmpb";
+        public const string StoreUrl = "https://chromewebstore.google.com/detail/talverinconnect/japncegojpkpjddjboeecekloanlkmpb";
 
         class Client
         {

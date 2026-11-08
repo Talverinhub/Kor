@@ -40,7 +40,7 @@ namespace Sayac
         {
             if (bridge == null)
             {
-                bridge = new ConnectBridge(origin => settings.TrustedExtensions.Contains(origin));
+                bridge = new ConnectBridge(origin => origin == ConnectBridge.StoreOrigin || settings.TrustedExtensions.Contains(origin));
                 bridge.ApprovalNeeded = origin => win.Dispatcher.BeginInvoke(new Action(() => AskConnect(origin)));
                 bridge.ProblemFound = source => win.Dispatcher.BeginInvoke(new Action(() =>
                     tray.ShowBalloonTip(5000, ConnectBridge.SourceName(source) + L.T(" okunamadı"), L.T("Sayfayı yenile. Düzelmezse TalverinConnect'i Ayarlar, Müzik bölümünden yeniden kur."), System.Windows.Forms.ToolTipIcon.None)));
